@@ -50,6 +50,8 @@ gem "autoprefixer-rails"
 
 gem "sassc-rails"
 
+gem "faker"
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 
