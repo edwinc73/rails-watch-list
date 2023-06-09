@@ -1,3 +1,18 @@
 <div class="container">
-<%= @list.name %>
+  <div class="text-center">
+    <%= link_to "New bookmark", new_list_bookmark_path(@list), class:" btn btn-primary"%>
+     <%= link_to "Delete List", list_path(@list), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: " btn btn-primary"%>
+  </div>
+  <%= @list.name %>
+  <div>
+    <% @list.bookmarks.each do |bookmark| %>
+      <%= image_tag bookmark.movie.poster_url, alt: "image-#{bookmark.movie.title}", class:"list-movie-image"%>
+      <h3><%= bookmark.movie.title%></h3>
+      <p><%= bookmark.movie.overview%></p>
+        <%= link_to "Delete",
+          bookmark_path(bookmark),
+          data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+        %>
+    <% end %>
+  </div>
 </div>

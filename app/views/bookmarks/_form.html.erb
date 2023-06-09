@@ -1,0 +1,5 @@
+<%= simple_form_for [bookmark, link] do |f| %>
+  <%= f.input :name %>
+  <%= f.association :movies %>
+  <%= f.association :lists %>
+<% end %>
