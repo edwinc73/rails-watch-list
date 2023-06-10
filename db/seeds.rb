@@ -10,12 +10,18 @@ require "faker"
 
 require "uri"
 
-User.all.each do |user|
-  user.destroy
+require "open-uri"
+
+if User.all.any?
+  User.all.each do |user|
+    user.destroy
+  end
 end
 
-Movie.all.each do |movie|
-  movie.destroy
+if Movie.all.any?
+  Movie.all.each do |movie|
+    movie.destroy
+  end
 end
 
 url = URI("https://tmdb.lewagon.com/movie/top_rated?language=en-US&page=1")
