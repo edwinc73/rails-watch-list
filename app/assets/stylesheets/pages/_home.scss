@@ -6,6 +6,8 @@
 
 .list{
   .list-image{
+    height: 300px;
+    object-fit: cover;
     width:100%;
     border-radius: 8px;
     box-shadow: 0 3px 8px 0 rgba($color: #000000, $alpha: 0.15);
@@ -36,7 +38,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  text-shadow: 1px 3px 10px black;
+  text-shadow: 1px 3px 15px black;
   text-align: center;
 
   h1{
