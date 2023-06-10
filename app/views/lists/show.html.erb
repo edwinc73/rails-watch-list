@@ -3,16 +3,26 @@
     <%= link_to "New bookmark", new_list_bookmark_path(@list), class:" btn btn-primary"%>
      <%= link_to "Delete List", list_path(@list), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: " btn btn-primary"%>
   </div>
-  <%= @list.name %>
-  <div>
+  <h2>
+    <%= @list.name %>
+  </h2>
+  <% if @list.bookmarks.empty? %>
+    <p>Oops, the list is empty. <br> Try adding a bookmark.</p>
+  <% end %>
+  <div class="row py-5 gy-5">
     <% @list.bookmarks.each do |bookmark| %>
-      <%= image_tag bookmark.movie.poster_url, alt: "image-#{bookmark.movie.title}", class:"list-movie-image"%>
-      <h3><%= bookmark.movie.title%></h3>
-      <p><%= bookmark.movie.overview%></p>
-        <%= link_to "Delete",
-          bookmark_path(bookmark),
-          data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
-        %>
+      <div class="d-flex border p-3 bookmark-card">
+        <%= image_tag bookmark.movie.poster_url, alt: "image-#{bookmark.movie.title}", class:"list-movie-image"%>
+        <div class="mx-3">
+          <h3><%= bookmark.movie.title%></h3>
+          <p class="my-2"><%= bookmark.movie.overview%></p>
+          <%= link_to "Delete",
+              bookmark_path(bookmark),
+              data: {turbo_method: :delete, turbo_confirm: "Are you sure?"},
+              class:"btn btn-danger text-light bookmark-delete"
+          %>
+        </div>
+      </div>
     <% end %>
   </div>
 </div>

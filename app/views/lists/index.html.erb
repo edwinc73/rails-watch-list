@@ -10,11 +10,11 @@
     <% @lists.each do |list| %>
       <div class="list-item col-lg-4 col-xs-12 col-md-6">
         <%= link_to list_path(list) do %>
-        <% if list.image_url.nil? %>
-          <%= image_tag "list-image", alt: "MyMovieList logo", class:"my-2 list-image" %>
-        <% else %>
-          <%= image_tag list.image_url, alt: "MyMovieList logo", class:"my-2 list-image" %>
-        <% end %>
+          <% if list.image_url.nil? %>
+            <%= image_tag "list-image.jpg", alt: "MyMovieList logo", class:"my-2 list-image" %>
+          <% else %>
+            <%= image_tag list.image_url, alt: "MyMovieList logo", class:"my-2 list-image" %>
+          <% end %>
           <h2><%= list.name %></h2>
         <% end %>
       </div>
