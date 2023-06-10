@@ -10,6 +10,14 @@ require "faker"
 
 require "uri"
 
+User.all.each do |user|
+  user.destroy
+end
+
+Movie.all.each do |movie|
+  movie.destroy
+end
+
 url = URI("https://tmdb.lewagon.com/movie/top_rated?language=en-US&page=1")
 
 image_url = "https://image.tmdb.org/t/p/original/"
@@ -18,8 +26,7 @@ res = URI.open(url).read
 
 data = JSON.parse(res)
 
-
-10.times do |index|
+20.times do |index|
   movie_data = data["results"][index]
   movie = Movie.create(
     title: movie_data["original_title"],
@@ -27,5 +34,15 @@ data = JSON.parse(res)
     poster_url: image_url + movie_data["poster_path"],
     rating: movie_data["vote_average"]
   )
-  p movie
 end
+
+file = URI.open("https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/NES-Console-Set.jpg/1200px-NES-Console-Set.jpg")
+
+user = User.new(
+username: "Edwin",
+bio: "Frankly, my dear, I don't give a damn"
+)
+
+user.profile_picture.attach(io: File.open("user.jpg"), filename: "user.jpg", content_type: "image/jpg")
+
+user.save!

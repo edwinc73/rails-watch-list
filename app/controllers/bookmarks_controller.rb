@@ -8,9 +8,11 @@ class BookmarksController < ApplicationController
   def create
     @bookmark = Bookmark.new(bookmark_params)
     @bookmark.list_id = @list.id
+    @bookmark.user = @user
     if @bookmark.save
       redirect_to list_path(@list)
     else
+      puts @bookmark.save!
       render :new, status: :unprocessable_entity
     end
   end
@@ -27,6 +29,6 @@ class BookmarksController < ApplicationController
   end
 
   def bookmark_params
-    params.require(:bookmark).permit(:comment, :movie_id, :list_id)
+    params.require(:bookmark).permit(:comment, :movie_id, :list_id, :user_id)
   end
 end

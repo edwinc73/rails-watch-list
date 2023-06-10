@@ -1,0 +1,19 @@
+.profile-page{
+  text-align: center;
+
+  .profile-picture-large{
+    width: 300px;
+    border-radius: 16px;
+    box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2);
+  }
+}
+
+.profile-bookmarks{
+  h3, p{
+    text-align: left;
+  }
+  img{
+    height: 200px;
+    width: unset;
+  }
+}

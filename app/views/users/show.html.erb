@@ -1,0 +1,52 @@
+<div class="container d-flex flex-column align-items-center profile-page">
+  <div class="profile-info border-bottom w-100 mt-2 pb-4">
+    <%= cl_image_tag @user.profile_picture.key, class:"profile-picture-large"%>
+    <h2 class="my-3"><%= @user.username %></h2>
+    <h4><em><%= @user.bio %></em></h4>
+  </div>
+  <hr>
+  <div class="profile-lists border-bottom w-100 mt-2 pb-4">
+    <h2>My Lists</h2>
+    <% if @user.lists.empty? %>
+      <h3>Please add a list</h3>
+      <%= link_to "New list", new_user_list_path(@user), class: "btn btn-primary"%>
+    <% end %>
+    <div class="list row">
+      <% @user.lists.each do |list| %>
+        <div class="list-item col-lg-4 col-xs-12 col-md-6">
+          <%= link_to list_path(list) do %>
+            <% if list.photo.attached? %>
+              <%= cl_image_tag list.photo.key, class:"mb-2 list-image" %>
+            <% else %>
+              <%= image_tag "list-image.jpg", alt: "MyMovieList logo", class:"my-2 list-image" %>
+            <% end %>
+            <h2><%= list.name %></h2>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="profile-bookmarks w-100 mt-2 pt-4">
+    <h2>My bookmarks</h2>
+    <% if @user.bookmarks.empty? %>
+      <p>Oops, the list is empty. <br> Try adding a bookmark.</p>
+    <% end %>
+    <div class="row py-2 gy-5">
+      <% @user.bookmarks.each do |bookmark| %>
+        <div class="d-flex border p-3 bookmark-card">
+          <%= image_tag bookmark.movie.poster_url, alt: "image-#{bookmark.movie.title}", class:"list-movie-image"%>
+          <div class="mx-3">
+            <h3><%= bookmark.movie.title%></h3>
+            <hr>
+            <p>My Comment: <br><%= bookmark.comment%></p>
+            <%= link_to "Delete",
+                bookmark_path(bookmark),
+                data: {turbo_method: :delete, turbo_confirm: "Are you sure?"},
+                class:"btn btn-danger text-light bookmark-delete"
+            %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
