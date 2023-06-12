@@ -1,34 +1,59 @@
-$white: rgb(245, 245, 245);
-
-header{
-  background-color: $white;
-}
-
 nav{
+  color: $white;
+  background-color: none;
   padding: 16px 32px;
   position: fixed;
   top: 0;
   left: 0;
-  background-color: $white;
   width: 100vw;
   z-index: 100;
   box-sizing: border-box;
 
+  .logo img{
+    height: 35px;
+  }
+
+  .nav-active:hover{
+    transition: 2s;
+  }
+
+  .nav-active::after{
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    right: 0;
+    width: 100%;
+    height: 2px;
+    display: block;
+    opacity: 0;
+  }
+
+  .nav-message{
+    display: inline;
+    margin-right: 10px;
+  }
+
   a{
-    color: black;
+    color: $white;
     text-decoration: none;
+    position: relative;
+  }
+  .i{
+    color: $white;
   }
 
   h2{
-    font-weight: 600;
+    color: $white;
+    letter-spacing: 0.12rem;
+    font-weight: 500;
     font-size: 28px;
-    margin: 0px 0 0 12px;
+    margin: 0px 0 0 8px;
     line-height: 45px;
     text-decoration: none;
   }
 
   .profile-picture{
-    border: 1px solid black;
+    border: 1px solid $white;
   }
 }
 

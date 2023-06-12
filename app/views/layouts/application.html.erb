@@ -17,16 +17,21 @@
         <%= link_to lists_path do %>
           <div class="d-flex logo align-items-center">
           <%= image_tag "cinema.svg", alt: "MyMovieList logo", height: 45 %>
-          <h2>My Movie List</h2>
+          <h2>Studio9</h2>
         </div>
         <% end %>
-        <div class="nav-links">
+        <div class="nav-links" data-controller="nav-links">
           <%= link_to "My lists", lists_path %>
           <%= link_to "New list", new_user_list_path(@user), class:"mx-2" %>
+        </div>
+        <div class="nav-user">
+          <i class="fa-regular fa-bell"></i>
+          <i class="fa-solid fa-gear mx-2"></i>
           <%= link_to user_path(@user) do %>
-            <%= cl_image_tag @user.profile_picture.key,
-      width: 45, height: 45, crop: :thumb, gravity: :face, class:"rounded-circle profile-picture"%>
-          <% end %>
+          <p class="nav-message">Welcome back, Edwin</p>
+              <%= cl_image_tag @user.profile_picture.key,
+        width: 45, height: 45, crop: :thumb, gravity: :face, class:"rounded-circle profile-picture"%>
+            <% end %>
         </div>
       </nav>
     </header>
